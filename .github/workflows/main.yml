@@ -38,10 +38,14 @@ jobs:
           java-version: 14
       - run: mvn -B package --file pom.xml -DskipTests
       - run: mkdir staging && cp target/*jar-with-dependencies.jar staging
-      - name: Deploy to Github Package Registry
-        env:
-          GITHUB_TOKEN: ${{ secrets.PUBLISH_PACKAGE }}
+      - name: Archive artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: staging/
+      - name: Publish to GitHub Packages
         run: |
-          cd ~/.m2
-          echo "<settings><servers><server><id>github</id><username>OWNER</username><password>${GITHUB_TOKEN}</password></server></servers></settings>" > ~/.m2/settings.xml
-          mvn deploy
+          echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
+          mvn deploy -Dregistry=https://maven.pkg.github.com/rgopisettiaws12/github-action-maven
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.PUBLISH_PACKAGE}}
