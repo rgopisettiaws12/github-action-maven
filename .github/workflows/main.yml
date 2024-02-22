@@ -38,7 +38,7 @@ jobs:
           java-version: 14
       - run: mvn -B package --file pom.xml -DskipTests
       - run: mkdir staging && cp target/*jar-with-dependencies.jar staging
-      - uses: actions/upload-artifact@v1
-        with:
-          name: Package
-          path: staging
+      - name: Publish to GitHub Packages
+        run: echo "//registry.npmjs.org/:_authToken=\${NODE_AUTH_TOKEN}" > ~/.npmrc && mvn deploy
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.PUBLISH_PACKAGE}}
