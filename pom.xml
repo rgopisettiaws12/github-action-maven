@@ -71,11 +71,11 @@
     </dependencies>
          
     <distributionManagement>
-        <repository>
-            <id>github</id>
-            <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/rgopisettiaws12/github-action-maven</url>
-        </repository>
+       <repository>
+         <id>github</id>
+         <name>GitHub Packages</name>
+         <url>https://maven.pkg.github.com/rgopisettiaws12/github-action-maven</url>
+       </repository>
     </distributionManagement>
 
 </project>
