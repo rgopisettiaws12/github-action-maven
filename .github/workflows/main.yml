@@ -47,6 +47,7 @@ jobs:
         run: echo "MAVEN_SETTINGS_XML_CONTENT" > ~/.m2/settings.xml
         env:
           MAVEN_SETTINGS_XML_CONTENT: |
+          
             <settings>
               <servers>
                 <server>
