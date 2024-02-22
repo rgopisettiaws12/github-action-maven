@@ -44,19 +44,7 @@ jobs:
           name: my-artifact
           path: staging/
       - name: Configure Maven settings
-        run: echo "MAVEN_SETTINGS_XML_CONTENT" > ~/.m2/settings.xml
-        env:
-          MAVEN_SETTINGS_XML_CONTENT: |
-          
-            <settings>
-              <servers>
-                <server>
-                  <id>github</id>
-                  <username>rgopisettiaws12</username>
-                  <password>${{ secrets.PUBLISH_PACKAGE }}</password>
-                </server>
-              </servers>
-            </settings>
+        run: echo "${{ secrets.MAVEN_SETTINGS_XML }}" > ~/.m2/settings.xml
       - name: Publish to GitHub Packages
         run: |
           echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
