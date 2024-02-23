@@ -6,7 +6,7 @@ public class App
         int ans = ourSuperComputer.answer_to_the_ultimate_question_of_life_the_universe_and_everything();
 
         RedisJava cache = new RedisJava();
-        cache.chache_value("answer_to_the_ultimate_question_of_life_the_universe_and_everything",String.valueOf(ans));
+        cache.cache_value("answer_to_the_ultimate_question_of_life_the_universe_and_everything",String.valueOf(ans));
 
         System.out.println("Cached value: " + cache.get_chached_value("answer_to_the_ultimate_question_of_life_the_universe_and_everything"));
     }
